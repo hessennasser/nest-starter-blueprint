@@ -1,0 +1,16 @@
+# Overrides for local development: publish the API/DB/Redis ports to the host.
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml --env-file .env up -d --build
+services:
+  api:
+    environment:
+      NODE_ENV: development
+    ports:
+      - "${HOST_PORT:-3000}:${APP_PORT:-3000}"
+
+  db:
+    ports:
+      - "${DATABASE_PORT:-5432}:5432"
+
+  redis:
+    ports:
+      - "${REDIS_PORT:-6379}:6379"

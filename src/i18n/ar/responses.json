@@ -1,0 +1,8 @@
+{
+  "operation_completed": "تمت العملية بنجاح",
+  "data_retrieved": "تم جلب البيانات بنجاح",
+  "resource_created": "تم إنشاء المورد بنجاح",
+  "resource_updated": "تم تحديث المورد بنجاح",
+  "resource_deleted": "تم حذف المورد بنجاح",
+  "authentication_successful": "تم تسجيل الدخول بنجاح"
+}

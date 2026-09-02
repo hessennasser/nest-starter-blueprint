@@ -1,0 +1,20 @@
+{
+  "internal": "Internal server error",
+  "bad_request": "Bad request",
+  "validation": "Validation failed",
+  "unauthorized": "You are not authenticated",
+  "forbidden": "You do not have access to this resource",
+  "not_found": "Resource not found",
+  "too_many_requests": "Too many requests, please slow down",
+  "missing_required_permissions": "You are missing the required permissions",
+  "insufficient_scope": "Your account type cannot perform this action",
+  "invalid_credentials": "Invalid email or password",
+  "invalid_refresh_token": "Invalid or expired session",
+  "user_not_found": "User not found",
+  "email_already_in_use": "That email address is already in use",
+  "role_not_found": "Role not found",
+  "article_not_found": "Article not found",
+  "validation_email": "{field} must be a valid email address",
+  "validation_not_empty": "{field} is required",
+  "validation_string": "{field} must be text"
+}

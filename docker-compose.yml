@@ -1,0 +1,107 @@
+name: nest-starter
+
+services:
+  api:
+    build:
+      context: .
+      target: production
+    image: nest-starter:latest
+    container_name: nest-starter-api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      APP_NAME: ${APP_NAME:-Nest Starter}
+      APP_PORT: ${APP_PORT:-3000}
+      API_PREFIX: ${API_PREFIX:-api}
+      APP_FALLBACK_LANGUAGE: ${APP_FALLBACK_LANGUAGE:-en}
+      APP_HEADER_LANGUAGE: ${APP_HEADER_LANGUAGE:-accept-language}
+      FRONTEND_DOMAIN: ${FRONTEND_DOMAIN:-}
+      BACKEND_DOMAIN: ${BACKEND_DOMAIN:-http://localhost:3000}
+      SWAGGER_USER: ${SWAGGER_USER:-admin}
+      SWAGGER_PASSWORD: ${SWAGGER_PASSWORD:-}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-15m}
+      JWT_REFRESH_EXPIRATION: ${JWT_REFRESH_EXPIRATION:-7d}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      DATABASE_TYPE: ${DATABASE_TYPE:-postgres}
+      DATABASE_HOST: ${DATABASE_HOST:-db}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+      DATABASE_USERNAME: ${DATABASE_USERNAME:-postgres}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME:-nest_starter}
+      DATABASE_SYNCHRONIZE: ${DATABASE_SYNCHRONIZE:-false}
+      DATABASE_MAX_CONNECTIONS: ${DATABASE_MAX_CONNECTIONS:-100}
+      DATABASE_SSL_ENABLED: ${DATABASE_SSL_ENABLED:-false}
+      REDIS_HOST: ${REDIS_HOST:-redis}
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-}
+      REDIS_DB: ${REDIS_DB:-0}
+      MAIL_HOST: ${MAIL_HOST:-}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USER: ${MAIL_USER:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_FROM_EMAIL: ${MAIL_FROM_EMAIL:-no-reply@example.com}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:-Nest Starter}
+      UPLOAD_DIR: /app/uploads
+      MAX_FILE_SIZE: ${MAX_FILE_SIZE:-10485760}
+      SEED_SUPER_ADMIN_EMAIL: ${SEED_SUPER_ADMIN_EMAIL:-}
+      SEED_SUPER_ADMIN_PASSWORD: ${SEED_SUPER_ADMIN_PASSWORD:-}
+      SEED_SUPER_ADMIN_FULL_NAME: ${SEED_SUPER_ADMIN_FULL_NAME:-Seed Super Admin}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - api-uploads:/app/uploads
+    networks:
+      - starter-network
+    expose:
+      - "${APP_PORT:-3000}"
+
+  db:
+    image: postgres:15-alpine
+    container_name: nest-starter-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME:-nest_starter}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+    networks:
+      - starter-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME:-postgres} -d ${DATABASE_NAME:-nest_starter}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    container_name: nest-starter-redis
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    networks:
+      - starter-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+networks:
+  starter-network:
+    driver: bridge
+    name: nest-starter-network
+
+volumes:
+  db-data:
+    name: nest-starter-db-data
+  redis-data:
+    name: nest-starter-redis-data
+  api-uploads:
+    name: nest-starter-api-uploads

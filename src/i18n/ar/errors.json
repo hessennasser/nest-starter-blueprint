@@ -1,0 +1,20 @@
+{
+  "internal": "خطأ داخلي في الخادم",
+  "bad_request": "طلب غير صالح",
+  "validation": "فشل التحقق من البيانات",
+  "unauthorized": "لم يتم تسجيل الدخول",
+  "forbidden": "ليس لديك صلاحية الوصول إلى هذا المورد",
+  "not_found": "المورد غير موجود",
+  "too_many_requests": "طلبات كثيرة جدًا، يرجى التمهل",
+  "missing_required_permissions": "لا تملك الصلاحيات المطلوبة",
+  "insufficient_scope": "نوع حسابك لا يسمح بهذا الإجراء",
+  "invalid_credentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+  "invalid_refresh_token": "الجلسة غير صالحة أو منتهية",
+  "user_not_found": "المستخدم غير موجود",
+  "email_already_in_use": "هذا البريد الإلكتروني مستخدم بالفعل",
+  "role_not_found": "الدور غير موجود",
+  "article_not_found": "المقالة غير موجودة",
+  "validation_email": "{field} يجب أن يكون بريدًا إلكترونيًا صالحًا",
+  "validation_not_empty": "{field} مطلوب",
+  "validation_string": "{field} يجب أن يكون نصًا"
+}

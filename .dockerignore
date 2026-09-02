@@ -1,0 +1,16 @@
+node_modules/
+dist/
+build/
+coverage/
+.git/
+.gitignore
+Dockerfile*
+.dockerignore
+*.log
+.env*
+.vscode/
+.idea/
+.DS_Store
+test/
+docs/
+*.md

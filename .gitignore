@@ -1,0 +1,43 @@
+# compiled output
+/dist
+/node_modules
+/build
+.pnpm-store/
+
+# logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+
+# tests
+/coverage
+/.nyc_output
+
+# IDEs
+/.idea
+.project
+.classpath
+.settings/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# env
+.env
+.env.local
+.env.*.local
+
+# local uploads
+/uploads
+
+# temp
+.temp
+.tmp
+*.tmp
+*.swp
+Thumbs.db
