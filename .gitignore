@@ -41,3 +41,6 @@ pnpm-debug.log*
 *.tmp
 *.swp
 Thumbs.db
+
+# Codebuff workspace metadata
+/.freebuff
